@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>茅酉愉 · 短剧编剧作品集</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ===== Reset & Base ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;
+  background:#fdfaf5;
+  color:#2b2118;
+  line-height:1.8;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#fdfaf5}
+::-webkit-scrollbar-thumb{background:#c4b5a5;border-radius:3px}
+
+/* ===== Nav ===== */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:0 2rem;
+  background:rgba(253,250,245,0.85);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(180,160,140,0.2);
+  transition:all .3s;
+}
+.nav-inner{
+  max-width:1100px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  height:60px;
+}
+.nav-logo{
+  font-family:'Noto Serif SC',serif;
+  font-size:1.15rem;font-weight:700;
+  color:#2b2118;letter-spacing:.05em;
+  text-decoration:none;
+}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{
+  text-decoration:none;color:#6b5e53;
+  font-size:.9rem;font-weight:400;
+  transition:color .25s;
+  letter-spacing:.03em;
+}
+.nav-links a:hover{color:#b5343a}
+
+/* ===== Hero ===== */
+.hero{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:2rem;
+  position:relative;
+}
+.hero::before{
+  content:'';position:absolute;top:0;left:0;right:0;bottom:0;
+  background:radial-gradient(ellipse at 50% 40%, rgba(181,52,58,0.04) 0%, transparent 70%),
+              radial-gradient(ellipse at 80% 20%, rgba(160,130,100,0.03) 0%, transparent 50%);
+  pointer-events:none;
+}
+.hero-content{position:relative;z-index:1}
+.hero-role{
+  display:inline-block;
+  font-size:.9rem;font-weight:500;
+  color:#b5343a;
+  letter-spacing:.15em;
+  border:1px solid rgba(181,52,58,0.3);
+  padding:.35em 1.2em;
+  border-radius:2px;
+  margin-bottom:2rem;
+}
+.hero-name{
+  font-family:'Noto Serif SC',serif;
+  font-size:clamp(2.5rem, 6vw, 4.5rem);
+  font-weight:900;
+  letter-spacing:.08em;
+  color:#2b2118;
+  line-height:1.2;
+  margin-bottom:.75rem;
+}
+.hero-subtitle{
+  font-family:'Noto Serif SC',serif;
+  font-size:clamp(1rem, 2.5vw, 1.35rem);
+  color:#6b5e53;
+  font-weight:400;
+  letter-spacing:.05em;
+  margin-bottom:3rem;
+}
+.hero-scroll{
+  display:inline-flex;align-items:center;gap:.5rem;
+  color:#b5a595;font-size:.8rem;letter-spacing:.08em;
+  text-decoration:none;
+  animation:bob 2s ease-in-out infinite;
+}
+.hero-scroll::after{
+  content:'';display:block;
+  width:1px;height:32px;
+  background:linear-gradient(to bottom, #b5a595, transparent);
+}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+/* ===== Section Common ===== */
+.section{padding:6rem 2rem}
+.section-inner{max-width:900px;margin:0 auto}
+.section-label{
+  font-size:.75rem;font-weight:500;
+  color:#b5343a;letter-spacing:.18em;
+  text-transform:uppercase;
+  margin-bottom:.75rem;
+}
+.section-title{
+  font-family:'Noto Serif SC',serif;
+  font-size:clamp(1.6rem, 3.5vw, 2.2rem);
+  font-weight:700;
+  letter-spacing:.06em;
+  color:#2b2118;
+  margin-bottom:3rem;
+  position:relative;
+}
+
+/* ===== About ===== */
+.about-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:3rem;align-items:start;
+}
+.about-text p{
+  color:#4a3f35;font-size:.95rem;
+  margin-bottom:1.2rem;
+  text-indent:2em;
+}
+.about-stats{
+  display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;
+}
+.stat-card{
+  background:#fff;border:1px solid rgba(180,160,140,0.2);
+  padding:1.5rem;text-align:center;
+  border-radius:2px;
+  transition:all .3s;
+}
+.stat-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.06);transform:translateY(-2px)}
+.stat-num{
+  font-family:'Noto Serif SC',serif;
+  font-size:2rem;font-weight:900;
+  color:#b5343a;line-height:1;
+  margin-bottom:.4rem;
+}
+.stat-label{
+  font-size:.8rem;color:#8b7e72;letter-spacing:.03em;
+}
+
+/* ===== Works ===== */
+.works-list{display:flex;flex-direction:column;gap:4rem}
+
+/* Featured work (first) */
+.work-featured{
+  display:grid;grid-template-columns:minmax(260px, 360px) 1fr;
+  gap:2.5rem;
+  background:#fff;
+  border:1px solid rgba(180,160,140,0.15);
+  border-radius:2px;
+  padding:2.5rem;
+  transition:all .35s;
+  align-items:center;
+}
+.work-featured:hover{box-shadow:0 8px 32px rgba(0,0,0,0.07)}
+.work-img-wrap{
+  width:100%;
+  max-width:360px;
+  background:#f5f0e8;
+  border-radius:2px;
+  overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  color:#b5a595;font-size:.85rem;
+  position:relative;
+  cursor:pointer;
+  transition:transform .3s, box-shadow .3s;
+}
+.work-img-wrap:hover{
+  transform:scale(1.02);
+  box-shadow:0 6px 24px rgba(0,0,0,0.12);
+}
+.work-img-wrap img{
+  width:100%;height:auto;display:block;
+  object-fit:contain;
+}
+.work-img-wrap::after{
+  content:'点击查看大图';
+  position:absolute;bottom:8px;right:10px;
+  font-size:.65rem;color:#fff;
+  background:rgba(0,0,0,0.45);
+  padding:.2em .6em;border-radius:2px;
+  opacity:0;transition:opacity .25s;
+  pointer-events:none;
+}
+.work-img-wrap:hover::after{opacity:1}
+.work-img-placeholder{
+  text-align:center;line-height:1.6;padding:3rem 1rem;
+}
+.work-img-placeholder .icon{font-size:2.5rem;margin-bottom:.5rem}
+.work-info{display:flex;flex-direction:column;justify-content:center}
+.work-badge{
+  display:inline-block;
+  font-size:.7rem;font-weight:500;
+  letter-spacing:.12em;
+  color:#b5343a;
+  border:1px solid rgba(181,52,58,0.25);
+  padding:.2em .8em;
+  border-radius:2px;
+  margin-bottom:.75rem;
+  width:fit-content;
+}
+.work-num{
+  font-family:'Noto Serif SC',serif;
+  font-size:.75rem;color:#b5a595;letter-spacing:.08em;
+  margin-bottom:.3rem;
+}
+.work-title{
+  font-family:'Noto Serif SC',serif;
+  font-size:1.8rem;font-weight:900;
+  letter-spacing:.06em;
+  color:#2b2118;
+  margin-bottom:.4rem;
+}
+.work-subtitle{
+  font-size:.85rem;color:#8b7e72;
+  margin-bottom:1rem;
+  font-weight:300;
+}
+.work-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.25rem}
+.work-tag{
+  font-size:.75rem;padding:.25em .75em;
+  background:rgba(181,52,58,0.06);
+  color:#8b4630;
+  border-radius:2px;
+  letter-spacing:.03em;
+}
+.work-hook{
+  font-family:'Noto Serif SC',serif;
+  font-size:1.05rem;color:#4a3f35;
+  line-height:1.7;
+  padding-left:1rem;
+  border-left:3px solid rgba(181,52,58,0.3);
+  margin-bottom:1.5rem;
+  font-style:italic;
+}
+.work-actions{display:flex;gap:1rem;flex-wrap:wrap;align-items:center}
+.btn-read{
+  background:#b5343a;color:#fff;
+  border:none;padding:.55em 1.5em;
+  font-family:inherit;font-size:.82rem;
+  cursor:pointer;letter-spacing:.04em;
+  border-radius:2px;text-decoration:none;
+  display:inline-flex;align-items:center;gap:.35em;
+  transition:all .25s;
+}
+.btn-read:hover{background:#8b1a1f;transform:translateY(-1px)}
+.btn-download{
+  background:none;border:1px solid rgba(180,160,140,0.4);
+  padding:.45em 1em;font-family:inherit;
+  font-size:.78rem;color:#8b7e72;cursor:pointer;
+  letter-spacing:.03em;border-radius:2px;
+  text-decoration:none;transition:all .25s;
+  display:inline-flex;align-items:center;gap:.3em;
+}
+.btn-download:hover{background:rgba(181,52,58,0.04);border-color:#b5343a;color:#b5343a}
+.btn-expand{
+  background:none;border:1px solid rgba(180,160,140,0.4);
+  padding:.55em 1.5em;
+  font-family:inherit;font-size:.82rem;
+  color:#6b5e53;cursor:pointer;
+  letter-spacing:.04em;
+  border-radius:2px;
+  transition:all .25s;
+}
+.btn-expand:hover{background:rgba(181,52,58,0.04);border-color:#b5343a;color:#b5343a}
+.btn-expand.active{background:#b5343a;color:#fff;border-color:#b5343a}
+
+/* Expand content */
+.work-detail{
+  display:none;margin-top:1.5rem;padding-top:1.5rem;
+  border-top:1px solid rgba(180,160,140,0.2);
+}
+.work-detail.open{display:block}
+.work-detail h5{
+  font-family:'Noto Serif SC',serif;
+  font-size:.85rem;color:#b5343a;margin-bottom:.5rem;letter-spacing:.05em;
+}
+.work-detail p{
+  font-size:.9rem;color:#4a3f35;line-height:1.8;
+  margin-bottom:1rem;
+}
+.work-detail blockquote{
+  font-size:.88rem;color:#6b5e53;line-height:1.9;
+  padding:1rem 1.5rem;
+  background:rgba(180,160,140,0.06);
+  border-left:2px solid rgba(181,52,58,0.2);
+  margin:1rem 0;
+  font-style:italic;
+}
+.script-badge{
+  display:inline-flex;align-items:center;gap:.35em;
+  font-size:.72rem;color:#8b7e72;
+  background:rgba(180,160,140,0.15);
+  padding:.25em .7em;border-radius:2px;
+  margin-left:.5rem;
+  letter-spacing:.03em;
+}
+.script-badge::before{content:'📝';font-size:.8rem}
+
+/* Regular work cards */
+.work-card{
+  background:#fff;
+  border:1px solid rgba(180,160,140,0.12);
+  border-radius:2px;
+  padding:2.5rem;
+  transition:all .35s;
+}
+.work-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.05)}
+.work-card .work-title{font-size:1.55rem}
+
+/* ===== Skills ===== */
+.skills-cloud{display:flex;flex-wrap:wrap;gap:.75rem}
+.skill-item{
+  font-size:.85rem;padding:.45em 1.2em;
+  background:#fff;
+  border:1px solid rgba(180,160,140,0.25);
+  border-radius:2px;
+  color:#4a3f35;
+  letter-spacing:.03em;
+  transition:all .25s;
+}
+.skill-item:hover{
+  background:rgba(181,52,58,0.04);
+  border-color:rgba(181,52,58,0.35);
+  color:#b5343a;
+  transform:translateY(-1px);
+}
+
+/* ===== Contact ===== */
+.contact-card{
+  background:#fff;
+  border:1px solid rgba(180,160,140,0.15);
+  border-radius:2px;
+  padding:3rem;
+  text-align:center;
+}
+.contact-item{
+  display:inline-flex;align-items:center;gap:.5rem;
+  margin:0 1.25rem;
+  font-size:.95rem;color:#4a3f35;
+  text-decoration:none;
+  transition:color .25s;
+}
+.contact-item:hover{color:#b5343a}
+.contact-icon{font-size:1.2rem}
+
+/* ===== Lightbox ===== */
+.lightbox{
+  display:none;position:fixed;top:0;left:0;right:0;bottom:0;
+  background:rgba(0,0,0,0.88);z-index:999;
+  align-items:center;justify-content:center;
+  cursor:pointer;
+}
+.lightbox.open{display:flex}
+.lightbox img{
+  max-width:92vw;max-height:92vh;
+  object-fit:contain;
+  border-radius:2px;
+  box-shadow:0 16px 48px rgba(0,0,0,0.4);
+}
+.lightbox-close{
+  position:absolute;top:20px;right:24px;
+  font-size:2rem;color:#fff;cursor:pointer;
+  width:44px;height:44px;display:flex;align-items:center;justify-content:center;
+  border-radius:50%;background:rgba(255,255,255,0.1);
+  transition:background .25s;
+}
+.lightbox-close:hover{background:rgba(255,255,255,0.2)}
+
+/* ===== Footer ===== */
+.footer{
+  text-align:center;padding:3rem;
+  font-size:.78rem;color:#b5a595;letter-spacing:.06em;
+}
+
+/* ===== Fade-in animation ===== */
+.fade-in{
+  opacity:0;transform:translateY(24px);
+  transition:opacity .7s ease-out,transform .7s ease-out;
+}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+
+/* ===== Responsive ===== */
+@media(max-width:768px){
+  .nav-links{display:none}
+  .section{padding:4rem 1.25rem}
+  .about-grid{grid-template-columns:1fr;gap:2rem}
+  .work-featured{grid-template-columns:1fr;padding:1.5rem}
+  .work-img-wrap{max-width:100%}
+  .contact-item{margin:.5rem;display:block}
+  .work-card{padding:1.5rem}
+}
+@media(max-width:480px){
+  .hero-name{font-size:2rem}
+  .about-stats{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== Nav ===== -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">茅酉愉</a>
+    <ul class="nav-links">
+      <li><a href="#about">关于</a></li>
+      <li><a href="#works">作品</a></li>
+      <li><a href="#skills">技能</a></li>
+      <li><a href="#contact">联系</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ===== Hero ===== -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="hero-role">应聘岗位：短剧编剧</div>
+    <h1 class="hero-name">茅酉愉</h1>
+    <p class="hero-subtitle">来都来了，看点再走呗~</p>
+    <a href="#works" class="hero-scroll">往下翻翻</a>
+  </div>
+</section>
+
+<!-- ===== About ===== -->
+<section class="section" id="about">
+  <div class="section-inner">
+    <div class="section-label">About</div>
+    <h2 class="section-title">关于我</h2>
+    <div class="about-grid">
+      <div class="about-text fade-in">
+        <p>我是茅酉愉，安徽师范大学 2022 级学生，将于 2026 年毕业。专攻短剧编剧方向，擅长民国历史、现代现实、古装甜宠等多题材创作，能够驾驭虐恋、现实向、轻悬疑等多种风格。</p>
+        <p>每部作品均以"小说 + 剧本"双形态呈现——先以小说体打磨故事肌理，再改编为剧本格式。熟练运用 AI 工具（ChatGPT / Claude）辅助创作流程，具备从故事大纲到分集剧本的完整产出能力。</p>
+        <p>相信好故事的力量。相信文字能穿越屏幕，触达人心。</p>
+      </div>
+      <div class="about-stats fade-in">
+        <div class="stat-card">
+          <div class="stat-num">4</div>
+          <div class="stat-label">原创作品</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">21</div>
+          <div class="stat-label">剧集总数</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">3</div>
+          <div class="stat-label">跨域题材</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">2</div>
+          <div class="stat-label">呈现形态</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Works ===== -->
+<section class="section" id="works">
+  <div class="section-inner">
+    <div class="section-label">Portfolio</div>
+    <h2 class="section-title">作品展示</h2>
+
+    <div class="works-list">
+
+      <!-- ===== 作品一：物是人非事事休（首位 + 图片） ===== -->
+      <div class="work-featured fade-in">
+        <div class="work-img-wrap">
+          <!-- ⚠️ 请将你的图片放在同目录下，命名为 wushirenfei.jpg，或修改下方 src -->
+          <img src="wushirenfei.jpg" alt="物是人非事事休" onclick="event.stopPropagation();openLightbox('wushirenfei.jpg')" onerror="this.style.display='none';this.parentElement.querySelector('.work-img-placeholder').style.display='block'">
+          <div class="work-img-placeholder" style="display:none">
+            <div class="icon">🖼️</div>
+            <div>物是人非事事休<br>配图</div>
+            <div style="font-size:.7rem;margin-top:.5rem">将图片命名为 wushirenfei.jpg<br>放入本目录即可</div>
+          </div>
+        </div>
+        <div class="work-info">
+          <div class="work-badge">✦ 重点推荐</div>
+          <div class="work-title">物是人非事事休</div>
+          <div class="work-subtitle">现代 · 现实向 · 虐恋 · 8集</div>
+          <div class="work-tags">
+            <span class="work-tag">现代</span>
+            <span class="work-tag">现实向</span>
+            <span class="work-tag">虐恋</span>
+            <span class="work-tag">8集剧本</span>
+          </div>
+          <p class="work-hook">"二十年后出狱，他唯一的行李是一只金镯子，和一段再也回不去的时光。"</p>
+          <div class="work-actions">
+            <a href="read/wushirenfei.html" class="btn-read">📖 阅读全文</a>
+            <button class="btn-expand" onclick="toggleDetail(this,'detail-wushirenfei')">展开预览 ▾</button>
+            <a href="downloads/物是人非事事休-小说版.docx" class="btn-download" download>⬇ 小说</a>
+            <a href="downloads/物是人非事事休-剧本版.docx" class="btn-download" download>⬇ 剧本</a>
+            <span class="script-badge">试水 · 初试作品</span>
+          </div>
+          <div class="work-detail" id="detail-wushirenfei">
+            <h5>故事大纲</h5>
+            <p>周荣在狱中度过二十年，出狱时五十八岁，身无分文。曾经的三江口首富如今只能住在城中村的破旧出租屋里。他唯一的随身物品是一只金镯子——那是他当年送给最信任的人胡建仁的。胡建仁替他扛下所有罪名，被判死刑立即执行。周荣在狱中二十年，每晚摩挲这只镯子，却再也没梦到过胡建仁。出狱后，他回到三江口，发现荣城集团的大楼还在但招牌已换，城中村的老墙上还残留着"荣城地产"的旧广告。最终，他戴着镯子走进老巷深处，再也没有出来。</p>
+            <blockquote>"二十年后周荣出狱了二十年，三江口变了一座城。周荣站在出狱后第一缕刺眼的阳光里，眯起眼看着眼前陌生的世界。他已经在监狱里待了整整二十年，从三十八岁到五十八岁，人生最后的黄金岁月全部消磨在高墙之内。"</blockquote>
+            <p style="font-size:.8rem;color:#8b7e72">📺 此作品曾发布在抖音平台，48小时数据表现优异。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== 作品二：细绳 ===== -->
+      <div class="work-card fade-in">
+        <div class="work-badge" style="margin-bottom:.5rem">古装甜宠</div>
+        <div class="work-title">细绳</div>
+        <div class="work-subtitle">古装 · 甜宠 · 轻悬疑 · 4集</div>
+        <div class="work-tags">
+          <span class="work-tag">古装</span>
+          <span class="work-tag">甜宠</span>
+          <span class="work-tag">轻悬疑</span>
+          <span class="work-tag">4集剧本</span>
+        </div>
+        <p class="work-hook">"一根绳子，连住两个人的心跳。黑暗里，他拉一下，意思是'我在'。"</p>
+        <div class="work-actions">
+          <a href="read/xisheng.html" class="btn-read">📖 阅读全文</a>
+          <button class="btn-expand" onclick="toggleDetail(this,'detail-xisheng')">展开预览 ▾</button>
+          <a href="downloads/细绳-小说版.docx" class="btn-download" download>⬇ 小说</a>
+          <a href="downloads/细绳-剧本版.docx" class="btn-download" download>⬇ 剧本</a>
+          <span class="script-badge">试水 · 初试作品</span>
+        </div>
+        <div class="work-detail" id="detail-xisheng">
+          <h5>故事大纲</h5>
+          <p>七斋六人夜探藏有边防图的旧宅。王宽和裴景被分到北面巷口。裴景怕黑，在极度的黑暗和恐惧中，王宽从袖口抽出一根细绳，一端系在自己腕上，一端塞进裴景掌心。他说："你害怕的时候，拉一下。我会知道。我拉一下，意思是我在。"整夜，两人通过绳子的拉动传递暗语——轻轻一下是"我在"，两下是"没事"，三下是"小心着凉"。天亮任务结束，裴景把绳子藏进药囊，发现绳子一头系着一个小小的同心结。</p>
+          <blockquote>"是夜，夜色像墨浓得化不开。七斋六人在巷口站定，风吹过来，带着深秋特有的凉意，把衣角吹得微微扬起。……忽然，黑暗中有人轻轻握了一下她的手。那只手从右侧伸过来，准确得像是能在夜里视物一般，覆在她紧紧抓着衣角的手上，五指合拢，轻轻一握。温热的，干燥的，力道极轻极柔，像是怕吓着她。然后松开了。"</blockquote>
+        </div>
+      </div>
+
+      <!-- ===== 作品三：归途 ===== -->
+      <div class="work-card fade-in">
+        <div class="work-badge" style="margin-bottom:.5rem">民国虐恋</div>
+        <div class="work-title">归途</div>
+        <div class="work-subtitle">民国 · 第一人称 · 寻人 · 4集</div>
+        <div class="work-tags">
+          <span class="work-tag">民国</span>
+          <span class="work-tag">虐恋</span>
+          <span class="work-tag">战争</span>
+          <span class="work-tag">4集剧本</span>
+        </div>
+        <p class="work-hook">"八千公里路，他从伦敦追到上海，只为找到那个从不回信的人。"</p>
+        <div class="work-actions">
+          <a href="read/guitu.html" class="btn-read">📖 阅读全文</a>
+          <button class="btn-expand" onclick="toggleDetail(this,'detail-guiltu')">展开预览 ▾</button>
+          <a href="downloads/归途-小说版.docx" class="btn-download" download>⬇ 小说</a>
+          <a href="downloads/归途-剧本版.docx" class="btn-download" download>⬇ 剧本</a>
+          <span class="script-badge">试水 · 初试作品</span>
+        </div>
+        <div class="work-detail" id="detail-guiltu">
+          <h5>故事大纲</h5>
+          <p>路垚在伦敦工作期间，与上海巡捕房探长乔楚生通信三年。乔楚生每封信都只说"一切安好"，从不透露自己的危险。淞沪会战爆发后，通信中断。路垚收到白幼宁"兄长失联"的电报，毅然买船票回国。他在沦为孤岛的上海找到乔楚生的旧公寓，发现乔楚生把自己从伦敦寄出的所有回信都珍藏在了床头柜里。他还找到一封没写完的信："三土，这辈子遇见你，是我最好的事。"路垚得知乔楚生已参军，在南京保卫战中负伤失踪。他一路向南寻找，最终在一个河边窝棚里找到了奄奄一息的乔楚生，两人在黎明前重逢。</p>
+          <blockquote>"伦敦今年冬天的雾比往年更浓些。我站在公寓的窗前，手里捏着那封已经翻看过无数遍的信，纸张柔软得像是被体温捂热的布料。窗外泰晤士河的水汽混着煤烟味涌进来，我咳嗽了两声，却没有关窗。我想闻闻这种味道——上海也是这样的。"</blockquote>
+        </div>
+      </div>
+
+      <!-- ===== 作品四：故人书 ===== -->
+      <div class="work-card fade-in">
+        <div class="work-badge" style="margin-bottom:.5rem">民国虐恋</div>
+        <div class="work-title">故人书</div>
+        <div class="work-subtitle">民国 · 虐恋 · 战争 · 5集</div>
+        <div class="work-tags">
+          <span class="work-tag">民国</span>
+          <span class="work-tag">虐恋</span>
+          <span class="work-tag">战争</span>
+          <span class="work-tag">5集剧本</span>
+        </div>
+        <p class="work-hook">"战火隔山海，他收到最后一封信时，那人已经死在八千公里外的桥上。"</p>
+        <div class="work-actions">
+          <a href="read/gurenshu.html" class="btn-read">📖 阅读全文</a>
+          <button class="btn-expand" onclick="toggleDetail(this,'detail-gurenshu')">展开预览 ▾</button>
+          <a href="downloads/故人书-小说版.docx" class="btn-download" download>⬇ 小说</a>
+          <a href="downloads/故人书-剧本版.docx" class="btn-download" download>⬇ 剧本</a>
+          <span class="script-badge">试水 · 初试作品</span>
+        </div>
+        <div class="work-detail" id="detail-gurenshu">
+          <h5>故事大纲</h5>
+          <p>民国二十六年，路垚在伦敦留学，与上海的乔楚生保持着书信往来。乔楚生是巡捕房探长，也是青龙帮的乔四爷，他在信中永远只说"一切安好"。淞沪会战爆发后，乔楚生的信断了。路垚等来的却是白幼宁的失联电报。路垚不顾战火辗转回到上海，得知乔楚生早在八月就已牺牲——他主动参军，在炸桥掩护部队撤退时阵亡。路垚在乔楚生的旧公寓里找到了自己从伦敦寄出的所有回信，以及一封没写完的遗书。乔楚生在信中说："路垚，我喜欢你，不是兄弟那种喜欢。"多年后，一本旧书里夹着他们的合照和最后一句话。</p>
+          <blockquote>"民国二十六年七月的那场雨，下了整整三天。路垚站在伦敦大学学院的实验室里，透过蒙了水雾的玻璃窗望出去。他的手边摊着一份《泰晤士报》，他看见'Shanghai'这个词的时候，钢笔从指间滑落，在白色实验服上划出一道墨痕。"</blockquote>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== Skills ===== -->
+<section class="section" id="skills">
+  <div class="section-inner">
+    <div class="section-label">Skills</div>
+    <h2 class="section-title">技能工具箱</h2>
+    <div class="skills-cloud fade-in">
+      <span class="skill-item">短剧编剧</span>
+      <span class="skill-item">小说创作</span>
+      <span class="skill-item">小说→剧本改编</span>
+      <span class="skill-item">多题材驾驭</span>
+      <span class="skill-item">民国历史题材</span>
+      <span class="skill-item">现代现实向</span>
+      <span class="skill-item">古装甜宠</span>
+      <span class="skill-item">虐恋情感线</span>
+      <span class="skill-item">分集大纲撰写</span>
+      <span class="skill-item">AI辅助创作（ChatGPT / Claude）</span>
+      <span class="skill-item">Canva / PS 视觉设计</span>
+      <span class="skill-item">多平台内容运营</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Contact ===== -->
+<section class="section" id="contact">
+  <div class="section-inner">
+    <div class="section-label">Contact</div>
+    <h2 class="section-title">联系我</h2>
+    <div class="contact-card fade-in">
+      <a href="mailto:15505653362@163.com" class="contact-item">
+        <span class="contact-icon">✉️</span> 15505653362@163.com
+      </a>
+      <a href="tel:15505653362" class="contact-item">
+        <span class="contact-icon">📞</span> 155 0565 3362
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<!-- ===== Lightbox ===== -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close">&times;</span>
+  <img src="" alt="大图预览" id="lightbox-img">
+</div>
+
+<footer class="footer">
+  <p>© 2026 茅酉愉 · 保持创作，保持真诚</p>
+</footer>
+
+<script>
+// ===== Expand/Collapse detail =====
+function toggleDetail(btn, detailId) {
+  const detail = document.getElementById(detailId);
+  const isOpen = detail.classList.contains('open');
+
+  // Close all other details
+  document.querySelectorAll('.work-detail.open').forEach(d => {
+    if (d.id !== detailId) {
+      d.classList.remove('open');
+      d.closest('.work-featured, .work-card')?.querySelector('.btn-expand')?.classList.remove('active');
+      const otherBtn = d.closest('.work-featured, .work-card')?.querySelector('.btn-expand');
+      if (otherBtn) otherBtn.textContent = '展开详情 ▾';
+    }
+  });
+
+  if (isOpen) {
+    detail.classList.remove('open');
+    btn.classList.remove('active');
+    btn.textContent = '展开详情 ▾';
+  } else {
+    detail.classList.add('open');
+    btn.classList.add('active');
+    btn.textContent = '收起详情 ▴';
+  }
+}
+
+// ===== Fade-in on scroll =====
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// ===== Lightbox =====
+function openLightbox(src) {
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeLightbox();
+});
+
+// ===== Nav shadow on scroll =====
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('.nav');
+  if (window.scrollY > 10) {
+    nav.style.boxShadow = '0 1px 8px rgba(0,0,0,0.06)';
+  } else {
+    nav.style.boxShadow = 'none';
+  }
+});
+</script>
+
+</body>
+</html>
